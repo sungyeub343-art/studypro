@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://studypro.kr/sitemap.xml
