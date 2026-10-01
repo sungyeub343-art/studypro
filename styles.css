@@ -80,7 +80,8 @@ h1, h2 { margin: 0; font-family: "Gowun Batang", serif; font-weight: 700; line-h
 .area { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(50px, 8vw, 120px); align-items: end; }
 .area-copy > p:last-child { max-width: 390px; margin: 24px 0 0; color: var(--muted); }
 .districts { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-.districts span { display: flex; min-height: 92px; align-items: center; gap: 15px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 0 22px; font-weight: 700; }
+.districts a { display: flex; min-height: 92px; align-items: center; gap: 15px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 0 22px; font-weight: 700; transition: color .2s, background .2s; }
+.districts a:hover { color: var(--brick); background: var(--white); }
 .districts small { color: #939c97; font-size: 9px; }
 
 .process { color: var(--white); background: var(--forest); }
@@ -167,8 +168,8 @@ footer p { margin: 2px 0; }
   .program-content { padding: 70px 22px; }
   .grade-panel { min-height: 305px; }
   .districts { grid-template-columns: repeat(2, 1fr); }
-  .districts span { min-height: 65px; padding: 0 13px; font-size: 13px; }
-  .districts span:last-child { grid-column: 1 / -1; }
+  .districts a { min-height: 65px; padding: 0 13px; font-size: 13px; }
+  .districts a:last-child { grid-column: 1 / -1; }
   .process ol { grid-template-columns: 1fr; row-gap: 42px; }
   .process li:not(:last-child)::after { top: auto; right: 50%; bottom: -31px; content: "↓"; }
   .contact { gap: 50px; padding: 86px 22px; }
