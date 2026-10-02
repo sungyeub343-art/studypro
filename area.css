@@ -20,11 +20,12 @@
 .local-plan-list span { color: var(--amber); font-size: 11px; }
 .local-plan-list strong { display: block; margin-bottom: 4px; }
 .local-plan-list p { margin: 0; color: rgba(255,255,255,.6); font-size: 13px; }
-.nearby { max-width: 1180px; margin: 0 auto; }
-.nearby-links { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 42px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-.nearby-links a { display: flex; min-height: 70px; align-items: center; justify-content: space-between; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 0 20px; font-weight: 700; }
-.nearby-links a:hover { color: var(--brick); background: var(--white); }
+.nearby, .localities { max-width: 1180px; margin: 0 auto; }
+.localities-intro { margin: 15px 0 0; color: var(--muted); }
+.nearby-links, .locality-links { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 42px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.nearby-links a, .locality-links a { display: flex; min-height: 70px; align-items: center; justify-content: space-between; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 0 20px; font-weight: 700; }
+.nearby-links a:hover, .locality-links a:hover, .locality-links a[aria-current="page"] { color: var(--brick); background: var(--white); }
 .breadcrumb { position: absolute; z-index: 2; top: 108px; left: clamp(22px, 5vw, 76px); color: rgba(255,255,255,.62); font-size: 11px; }
 .breadcrumb a:hover { color: var(--white); }
-@media (max-width: 900px) { .area-guide-header, .local-plan-inner { grid-template-columns: 1fr; } .transition-grid { grid-template-columns: 1fr; } .nearby-links { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .area-hero { min-height: 570px; } .area-hero-content { margin-top: 62px; text-align: left; } .area-hero h1 { font-size: 36px; } .area-hero p:last-child { font-size: 14px; } .breadcrumb { top: 90px; left: 22px; } .transition-grid { margin-top: 40px; } .transition-card { min-height: 0; } .nearby-links { grid-template-columns: 1fr 1fr; } .nearby-links a { min-height: 62px; padding: 0 13px; font-size: 13px; } }
+@media (max-width: 900px) { .area-guide-header, .local-plan-inner { grid-template-columns: 1fr; } .transition-grid { grid-template-columns: 1fr; } .nearby-links, .locality-links { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .area-hero { min-height: 570px; } .area-hero-content { margin-top: 62px; text-align: left; } .area-hero h1 { font-size: 36px; } .area-hero p:last-child { font-size: 14px; } .breadcrumb { top: 90px; left: 22px; } .transition-grid { margin-top: 40px; } .transition-card { min-height: 0; } .nearby-links, .locality-links { grid-template-columns: 1fr 1fr; } .nearby-links a, .locality-links a { min-height: 62px; padding: 0 13px; font-size: 13px; } }
