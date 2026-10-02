@@ -57,6 +57,7 @@ DISTRICTS = {
 EXPECTED_PAGE_COUNT = 150
 GENERATED_START = "<!-- LOCALITY-LINKS:START -->"
 GENERATED_END = "<!-- LOCALITY-LINKS:END -->"
+PHONE_BUTTON = '<a class="area-phone" href="tel:01029283614" aria-label="010-2928-3614로 전화 상담">전화 상담 <strong>010-2928-3614</strong></a>'
 
 
 def locality_kind(locality: str) -> str:
@@ -94,6 +95,16 @@ def parent_links_block(district_name: str, localities: list[str]) -> str:
 def update_parent(district_slug: str, district_name: str, localities: list[str]) -> None:
     path = ROOT / district_slug / "index.html"
     text = path.read_text(encoding="utf-8")
+    text = re.sub(r'<a class="area-phone".*?</a>', "", text)
+    text, phone_button_count = re.subn(
+        r'(<section class="area-hero".*?<div class="area-hero-content">.*?</p>)(</div>\s*</section>)',
+        lambda match: f"{match.group(1)}{PHONE_BUTTON}{match.group(2)}",
+        text,
+        count=1,
+        flags=re.S,
+    )
+    if phone_button_count != 1:
+        raise ValueError(f"Area hero not found in {path}")
     text = re.sub(
         rf"\s*{re.escape(GENERATED_START)}.*?{re.escape(GENERATED_END)}\s*",
         "\n",
@@ -130,7 +141,7 @@ def render_page(district_slug: str, district_name: str, locality: str, index: in
 <body>
   <header class="site-header" id="top"><a class="brand" href="../../" aria-label="대구 수학과외 홈"><span class="brand-mark" aria-hidden="true">Σ</span><span>대구 수학과외<small>STUDY PRO</small></span></a><button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="메뉴 열기"><span></span><span></span><span></span></button><nav class="primary-nav" id="primary-nav" aria-label="주요 메뉴"><a href="#transition">학년별 수업</a><a href="#plan">수업 설계</a><a href="#nearby">인근 지역</a><a class="nav-cta" href="../../#contact">상담 신청</a></nav></header>
   <main>
-    <section class="area-hero" aria-labelledby="area-title"><p class="breadcrumb"><a href="../../">대구 수학과외</a> / <a href="../">{escape(district_name)}</a> / {escape(locality)}</p><div class="area-hero-content"><p class="eyebrow light">{escape(district_name)} {escape(locality)} PERSONAL MATH</p><h1 id="area-title">대구 {escape(locality)} 수학과외,<br><em>이해를 성적으로 연결하는 수업</em></h1><p>{escape(locality)} 학생의 {place_phrase}과 학교 진도, 목표를 함께 살펴 개념 복습부터 내신·수능 대비까지 학생별 속도로 지도합니다.</p></div></section>
+    <section class="area-hero" aria-labelledby="area-title"><p class="breadcrumb"><a href="../../">대구 수학과외</a> / <a href="../">{escape(district_name)}</a> / {escape(locality)}</p><div class="area-hero-content"><p class="eyebrow light">{escape(district_name)} {escape(locality)} PERSONAL MATH</p><h1 id="area-title">대구 {escape(locality)} 수학과외,<br><em>이해를 성적으로 연결하는 수업</em></h1><p>{escape(locality)} 학생의 {place_phrase}과 학교 진도, 목표를 함께 살펴 개념 복습부터 내신·수능 대비까지 학생별 속도로 지도합니다.</p>{PHONE_BUTTON}</div></section>
     <section class="area-guide section" id="transition"><div class="area-guide-header reveal"><div><p class="eyebrow">GRADE TRANSITION</p><h2>다음 학년을 위한<br>빈틈 없는 준비</h2></div><p>{escape(locality)} 수학과외는 정답만 확인하지 않습니다. 풀이가 막힌 지점과 이전 개념의 빈틈을 먼저 찾고, 학교 수업과 다음 학년에서 필요한 내용을 순서대로 연결합니다.</p></div><div class="transition-grid">
       <article class="transition-card reveal"><small>MIDDLE SCHOOL</small><h3>예비중1 · 예비중2 · 예비중3</h3><p><strong>예비중1</strong>은 연산과 문자식의 기초를, <strong>예비중2</strong>는 방정식과 함수의 연결을 익힙니다. <strong>예비중3</strong>은 고등 수학으로 이어지는 대수와 도형 개념을 정리합니다.</p></article>
       <article class="transition-card reveal"><small>HIGH SCHOOL</small><h3>예비고1 · 예비고2 · 예비고3</h3><p><strong>예비고1</strong>은 공통수학의 개념과 학습량을 준비하고, <strong>예비고2</strong>는 내신과 선택 과목을 함께 설계합니다. <strong>예비고3</strong>은 기출과 취약 단원을 중심으로 수능 실전력을 높입니다.</p></article>
@@ -204,6 +215,8 @@ def validate(urls: list[str]) -> None:
                 raise ValueError(f"Invalid canonical in {page}")
             if locality not in text or f'href="../">{district_name}</a>' not in text:
                 raise ValueError(f"Invalid local content in {page}")
+            if text.count(PHONE_BUTTON) != 1:
+                raise ValueError(f"Invalid phone button in {page}")
     sitemap = ET.parse(ROOT / "sitemap.xml")
     namespace = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
     sitemap_urls = [node.text for node in sitemap.findall(f".//{namespace}loc")]
