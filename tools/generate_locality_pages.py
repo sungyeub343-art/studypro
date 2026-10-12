@@ -1,12 +1,16 @@
-from datetime import date
+from datetime import datetime
 from html import escape
 from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
+from zoneinfo import ZoneInfo
 
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE_URL = "https://studypro.kr"
+SEOUL_TIMEZONE = ZoneInfo("Asia/Seoul")
+SOCIAL_IMAGE_URL = f"{SITE_URL}/og-image-20261009.png"
+SOCIAL_IMAGE_ALT = "대구 수학과외 - 이해가 성적이 되는 1:1 맞춤 수업"
 
 DISTRICTS = {
     "jung-gu": ("중구", [
@@ -134,6 +138,16 @@ def render_page(district_slug: str, district_name: str, locality: str, index: in
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="{escape(description)}">
   <meta name="theme-color" content="#173b35"><meta property="og:type" content="website"><meta property="og:locale" content="ko_KR"><meta property="og:title" content="{escape(title)}"><meta property="og:description" content="{escape(locality)} 학생을 위한 초중고 1:1 맞춤 수학과외"><meta property="og:url" content="{canonical}">
+  <meta property="og:site_name" content="STUDY PRO">
+  <meta property="og:image" content="{SOCIAL_IMAGE_URL}">
+  <meta property="og:image:secure_url" content="{SOCIAL_IMAGE_URL}">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{SOCIAL_IMAGE_ALT}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{SOCIAL_IMAGE_URL}">
+  <meta name="twitter:image:alt" content="{SOCIAL_IMAGE_ALT}">
   <link rel="canonical" href="{canonical}"><link rel="icon" href="../../favicon.svg" type="image/svg+xml"><title>{escape(title)}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../styles.css"><link rel="stylesheet" href="../../area.css">
   <script type="application/ld+json">{{"@context":"https://schema.org","@type":"EducationalOrganization","name":"대구 {escape(district_name)} {escape(locality)} 수학과외","url":"{canonical}","telephone":"+82-10-2928-3614","areaServed":{{"@type":"Place","name":"대구광역시 {escape(district_name)} {escape(locality)}"}}}}</script>
@@ -188,7 +202,7 @@ def update_sitemap(urls: list[str]) -> None:
         location = node.find(f"{namespace}loc")
         if location is not None and "/locality-" in (location.text or ""):
             root.remove(node)
-    last_modified = date.today().isoformat()
+    last_modified = datetime.now(SEOUL_TIMEZONE).date().isoformat()
     for url in urls:
         node = ET.SubElement(root, f"{namespace}url")
         ET.SubElement(node, f"{namespace}loc").text = url
