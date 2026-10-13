@@ -1,5 +1,27 @@
 const menuButton = document.querySelector('.menu-button');
 const navigation = document.querySelector('.primary-nav');
+const regionModal = document.querySelector('#region-modal');
+const regionModalClose = document.querySelector('.region-modal-close');
+
+const closeRegionModal = () => {
+  regionModal.classList.add('is-closed');
+  document.body.classList.remove('region-modal-open');
+};
+
+document.body.classList.add('region-modal-open');
+regionModalClose.focus();
+
+regionModalClose.addEventListener('click', closeRegionModal);
+regionModal.addEventListener('click', (event) => {
+  if (event.target === regionModal) {
+    closeRegionModal();
+  }
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && !regionModal.classList.contains('is-closed')) {
+    closeRegionModal();
+  }
+});
 
 menuButton.addEventListener('click', () => {
   const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
