@@ -84,30 +84,3 @@ const revealObserver = new IntersectionObserver((entries, observer) => {
 
 document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
 document.querySelector('#year').textContent = new Date().getFullYear();
-
-const contactForm = document.querySelector('#contact-form');
-const statusElement = document.querySelector('.form-status');
-
-if (contactForm) {
-  const submitButton = contactForm.querySelector('.submit-button');
-
-  contactForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    submitButton.disabled = true;
-    statusElement.textContent = '상담 신청을 전송하고 있습니다.';
-
-    try {
-      await fetch(contactForm.action, {
-        method: 'POST',
-        body: new FormData(contactForm),
-        mode: 'no-cors'
-      });
-      contactForm.reset();
-      statusElement.textContent = '상담 신청이 접수되었습니다. 확인 후 연락드리겠습니다.';
-    } catch (error) {
-      statusElement.textContent = '전송에 실패했습니다. 잠시 후 다시 시도하거나 전화로 문의해 주세요.';
-    } finally {
-      submitButton.disabled = false;
-    }
-  });
-}
