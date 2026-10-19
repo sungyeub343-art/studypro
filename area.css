@@ -3,6 +3,7 @@
 .area-hero-content { position: relative; z-index: 1; width: min(850px, 88%); margin: 70px auto 0; text-align: center; }
 .area-hero h1 { font-size: clamp(38px, 5vw, 68px); }
 .area-hero h1 em { color: var(--amber); font-style: normal; }
+.area-hero h1, .area-guide h2, .local-plan h2, .area-faq h2, .area-cta h2, .localities h2, .nearby h2 { word-break: keep-all; }
 .area-hero-content > p:last-of-type { max-width: 650px; margin: 24px auto 0; color: rgba(255,255,255,.78); }
 .area-phone { display: inline-flex; align-items: center; gap: 14px; margin-top: 28px; padding: 14px 20px; color: var(--forest); background: var(--amber); font-size: 12px; font-weight: 600; }
 .area-phone strong { font-size: 17px; }
@@ -66,5 +67,12 @@
 .area-cta-actions strong { font-size: 17px; }
 .breadcrumb { position: absolute; z-index: 2; top: 108px; left: clamp(22px, 5vw, 76px); color: rgba(255,255,255,.62); font-size: 11px; }
 .breadcrumb a:hover { color: var(--white); }
-@media (max-width: 900px) { .area-guide-header, .local-plan-inner, .area-care-heading, .area-faq { grid-template-columns: 1fr; } .transition-grid { grid-template-columns: 1fr; } .area-care-grid { grid-template-columns: repeat(2, 1fr); } .nearby-links, .locality-links { grid-template-columns: repeat(2, 1fr); } .area-cta-inner { align-items: flex-start; flex-direction: column; justify-content: center; } .area-cta-actions { width: 100%; } }
+.transition-grid.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grade-card { display: flex; flex-direction: column; }
+.grade-card h3 a:hover { color: var(--brick); }
+.grade-card p { flex: 1; }
+.grade-more { display: inline-flex; gap: 8px; margin-top: 20px; color: var(--brick); font-size: 13px; font-weight: 700; }
+.grade-more:hover { text-decoration: underline; }
+.nearby-subtitle { margin-top: 70px; font-size: clamp(26px, 3vw, 38px); }
+@media (max-width: 900px) { .area-guide-header, .local-plan-inner, .area-care-heading, .area-faq { grid-template-columns: 1fr; } .transition-grid, .transition-grid.grid-2 { grid-template-columns: 1fr; } .area-care-grid { grid-template-columns: repeat(2, 1fr); } .nearby-links, .locality-links { grid-template-columns: repeat(2, 1fr); } .area-cta-inner { align-items: flex-start; flex-direction: column; justify-content: center; } .area-cta-actions { width: 100%; } }
 @media (max-width: 600px) { .area-hero { min-height: 620px; } .area-hero-content { margin-top: 62px; text-align: left; } .area-hero h1 { font-size: 36px; } .area-hero-content > p:last-of-type { font-size: 14px; } .area-phone { width: 100%; justify-content: center; } .breadcrumb { top: 90px; left: 22px; } .transition-grid { margin-top: 40px; } .transition-card { min-height: 0; } .area-care-summary { grid-template-columns: 1fr; margin-top: 38px; } .area-care-summary div { min-height: 88px; border-right: 0; border-bottom: 1px solid rgba(23, 59, 53, .18); } .area-care-summary div:last-child { border-bottom: 0; } .area-care-grid { grid-template-columns: 1fr; } .area-care-grid article { min-height: 210px; } .area-care-grid h3 { margin-top: 40px; } .localities::before { display: none; } .nearby-links, .locality-links { grid-template-columns: 1fr 1fr; } .nearby-links a, .locality-links a { min-height: 62px; padding: 0 13px; font-size: 13px; } .area-faq { gap: 40px; } .area-faq-list summary { font-size: 14px; } .area-cta { padding: 0 22px; } .area-cta-inner { min-height: 500px; gap: 42px; } }
