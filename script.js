@@ -3,12 +3,27 @@ const navigation = document.querySelector('.primary-nav');
 const regionModal = document.querySelector('#region-modal');
 const regionModalClose = document.querySelector('.region-modal-close');
 
-if (regionModal && regionModalClose) {
+// 사이트에 처음 들어온 첫 화면에서만 지역 선택 창을 띄웁니다.
+// 사이트 안에서 이동해 왔거나(#contact 등) 이번 방문에 이미 본 경우에는 띄우지 않습니다.
+const shouldShowRegionModal = () => {
+  if (window.location.hash) return false;
+  try {
+    if (document.referrer && new URL(document.referrer).host === window.location.host) return false;
+  } catch (error) { /* 잘못된 referrer는 무시 */ }
+  try {
+    if (sessionStorage.getItem('regionModalSeen')) return false;
+    sessionStorage.setItem('regionModalSeen', '1');
+  } catch (error) { /* 저장소를 쓸 수 없으면 한 번 띄웁니다 */ }
+  return true;
+};
+
+if (regionModal && regionModalClose && shouldShowRegionModal()) {
   const closeRegionModal = () => {
     regionModal.classList.add('is-closed');
     document.body.classList.remove('region-modal-open');
   };
 
+  regionModal.classList.remove('is-closed');
   document.body.classList.add('region-modal-open');
   regionModalClose.focus();
 
