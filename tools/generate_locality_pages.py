@@ -157,8 +157,262 @@ GRADES = {
     },
 }
 
+# 대구 전체 대상 주제 페이지: 학년 단위(중1~고3), 시즌(예비중1·예비고1·겨울방학), 수업 형태(방문 과외)
+TOPICS = {
+    "middle-1": {
+        "name": "중1", "grade": "middle", "eyebrow": "MIDDLE 1 MATH",
+        "title": "대구 중1 수학과외 | 중1 수학 개념·첫 내신 1:1 준비",
+        "description": "대구 중1 수학과외 - 소인수분해, 정수와 유리수, 일차방정식, 좌표평면과 그래프까지 중1 수학 개념을 1:1로 다지고 중학교 첫 내신 시험을 준비합니다.",
+        "tagline": "중학 수학의 첫 단추부터 정확하게",
+        "intro": "초등 수학과 달리 문자와 식, 음수가 본격적으로 등장하는 중1 수학은 이후 3년의 기초가 됩니다. 개념을 정확히 이해하고 풀이 과정을 쓰는 습관을 1:1로 만듭니다.",
+        "lesson_heading": "중1 수학,<br>이렇게 수업합니다",
+        "lesson_text": "중1은 시험 경험이 적어 공부 방법부터 잡는 것이 중요합니다. 개념 설명, 기본 문제, 서술형 풀이 연습을 한 흐름으로 묶어 혼자서도 복습할 수 있게 지도합니다.",
+        "cards": [
+            ("CONCEPT", "중1 수학 개념 정리", "소인수분해, 정수와 유리수, 문자의 사용과 식처럼 중등 수학의 언어가 되는 개념을 정확히 익힙니다."),
+            ("EQUATION", "일차방정식과 그래프", "식을 세우는 과정을 단계별로 연습하고, 좌표평면과 그래프로 수량 관계를 해석하는 힘을 기릅니다."),
+            ("SCHOOL EXAM", "중1 첫 내신 대비", "학교별 시험 시기와 범위를 확인해 교과서와 부교재 중심으로 첫 지필평가와 수행평가를 준비합니다."),
+        ],
+        "stages_heading": "중1 수학<br>학기별 학습 흐름",
+        "stages": [
+            ("1학기", "소인수분해, 정수와 유리수, 문자와 식, 일차방정식으로 계산의 정확도와 식 세우기를 다집니다."),
+            ("2학기", "좌표평면과 그래프, 기본 도형, 평면도형과 입체도형, 자료의 정리와 해석을 학습합니다."),
+            ("겨울방학", "중1 전 범위 취약 단원을 복습하고 중2 연립방정식과 일차함수를 미리 준비합니다."),
+        ],
+        "faqs": [
+            ("중1은 시험이 적은데 과외가 필요할까요?", "시험 부담이 적은 시기에 개념과 공부 습관을 잡아두면 중2부터 늘어나는 내신 범위를 훨씬 수월하게 준비할 수 있습니다."),
+            ("음수 계산을 자주 틀리는데 괜찮을까요?", "정수와 유리수의 사칙계산은 이후 모든 단원에 쓰입니다. 실수 유형을 기록하고 반복 점검해 계산 정확도를 먼저 끌어올립니다."),
+            ("중1 수학 수업은 주 몇 회가 적당한가요?", "학생의 현재 이해도와 학교 진도에 따라 다릅니다. 상담에서 진단 결과를 바탕으로 수업 횟수와 숙제 분량을 함께 정합니다."),
+        ],
+    },
+    "middle-2": {
+        "name": "중2", "grade": "middle", "eyebrow": "MIDDLE 2 MATH",
+        "title": "대구 중2 수학과외 | 연립방정식·일차함수 내신 1:1",
+        "description": "대구 중2 수학과외 - 연립일차방정식, 일차부등식, 일차함수, 도형의 성질과 닮음, 확률까지 중2 수학내신을 1:1로 준비합니다. 기초가 흔들리는 학생도 진단 후 보완합니다.",
+        "tagline": "내신 변별력이 커지는 시기를 단단하게",
+        "intro": "중2 수학은 함수와 도형 증명이 함께 등장해 성적 차이가 가장 크게 벌어지는 시기입니다. 유형별 풀이와 서술형 답안 작성까지 1:1로 꼼꼼하게 준비합니다.",
+        "lesson_heading": "중2 수학,<br>이렇게 수업합니다",
+        "lesson_text": "중2 내신은 계산보다 개념을 연결하는 문제가 많아집니다. 단원 사이의 연결 고리를 짚어주고, 학교별 기출 유형으로 실전 감각을 기릅니다.",
+        "cards": [
+            ("ALGEBRA", "연립방정식·부등식", "식의 계산부터 연립일차방정식, 일차부등식까지 문장제를 식으로 바꾸는 과정을 집중 연습합니다."),
+            ("FUNCTION", "일차함수 완성", "기울기와 절편의 의미를 그래프로 이해하고, 함수 문제를 식과 그래프 양쪽에서 풀어냅니다."),
+            ("GEOMETRY", "도형의 성질과 닮음", "삼각형과 사각형의 성질, 닮음을 근거를 들어 설명하는 서술형 답안 작성까지 연습합니다."),
+        ],
+        "stages_heading": "중2 수학<br>학기별 학습 흐름",
+        "stages": [
+            ("1학기", "식의 계산, 일차부등식, 연립일차방정식, 일차함수와 그래프를 내신 유형 중심으로 학습합니다."),
+            ("2학기", "삼각형과 사각형의 성질, 도형의 닮음, 확률을 개념 증명과 서술형 위주로 준비합니다."),
+            ("겨울방학", "중2 함수·도형 취약 단원을 정리하고 중3 제곱근, 인수분해, 이차방정식을 준비합니다."),
+        ],
+        "faqs": [
+            ("중2 수학 성적이 갑자기 떨어졌어요.", "중1 개념의 빈틈이 중2 함수와 방정식에서 드러나는 경우가 많습니다. 진단으로 원인을 찾아 이전 단원과 현재 진도를 함께 보완합니다."),
+            ("도형 증명 서술형이 특히 어려워요.", "증명의 근거가 되는 성질을 먼저 정리하고, 답안을 직접 써 본 뒤 첨삭하는 방식으로 서술형 점수를 끌어올립니다."),
+            ("중2 때 고등 수학 선행을 해야 하나요?", "중2 내신 개념이 안정된 뒤에 선행 범위를 정하는 것을 권합니다. 중3 과정과의 연결을 먼저 다지는 것이 효율적입니다."),
+        ],
+    },
+    "middle-3": {
+        "name": "중3", "grade": "middle", "eyebrow": "MIDDLE 3 MATH",
+        "title": "대구 중3 수학과외 | 인수분해·이차함수와 고등 수학 준비",
+        "description": "대구 중3 수학과외 - 제곱근과 실수, 인수분해, 이차방정식, 이차함수, 삼각비까지 중3 수학내신을 1:1로 준비하고 고등 공통수학으로 이어지는 기초를 다집니다.",
+        "tagline": "중3 내신과 고등 준비를 함께",
+        "intro": "중3 수학은 고등 수학의 출발점입니다. 인수분해와 이차함수를 확실히 이해해야 고1 공통수학을 무리 없이 시작할 수 있습니다. 내신과 고등 준비의 균형을 1:1로 설계합니다.",
+        "lesson_heading": "중3 수학,<br>이렇게 수업합니다",
+        "lesson_text": "중3은 내신 관리와 고등 준비를 동시에 해야 하는 시기입니다. 학교 진도를 우선하되, 고등 수학에서 다시 쓰이는 개념은 더 깊이 다져 둡니다.",
+        "cards": [
+            ("NUMBER", "제곱근과 실수", "무리수와 근호 계산을 정확하게 익혀 이후 이차방정식과 고등 수학 계산의 기초를 만듭니다."),
+            ("FACTORING", "인수분해·이차방정식", "곱셈 공식과 인수분해를 빠르고 정확하게 다루고, 이차방정식 풀이로 자연스럽게 연결합니다."),
+            ("FUNCTION", "이차함수와 삼각비", "이차함수 그래프의 이동과 최대·최소, 삼각비와 원의 성질을 내신 서술형까지 준비합니다."),
+        ],
+        "stages_heading": "중3 수학<br>학기별 학습 흐름",
+        "stages": [
+            ("1학기", "제곱근과 실수, 다항식의 곱셈과 인수분해, 이차방정식, 이차함수를 학습합니다."),
+            ("2학기", "삼각비, 원의 성질, 통계를 마무리하며 고등 공통수학의 다항식 단원을 준비합니다."),
+            ("겨울방학", "예비고1 과정으로 공통수학1의 다항식, 방정식과 부등식을 본격적으로 학습합니다."),
+        ],
+        "faqs": [
+            ("중3 2학기에는 무엇을 준비해야 하나요?", "중3 내신을 마무리하면서 인수분해와 이차함수를 완벽히 정리하고, 고등 공통수학1의 다항식 단원부터 준비를 시작합니다."),
+            ("고등 선행이 늦은 편인데 괜찮을까요?", "중3 핵심 개념이 탄탄하다면 겨울방학 동안 공통수학의 주요 단원을 집중적으로 준비할 수 있습니다. 진단 후 현실적인 일정을 제안합니다."),
+            ("이차함수가 너무 어려워요.", "그래프 그리기부터 꼭짓점, 축, 평행이동을 단계별로 연습하고, 식과 그래프를 오가며 이해하도록 지도합니다."),
+        ],
+    },
+    "high-1": {
+        "name": "고1", "grade": "high", "eyebrow": "HIGH 1 MATH",
+        "title": "대구 고1 수학과외 | 공통수학1·2 내신 1:1 대비",
+        "description": "대구 고1 수학과외 - 공통수학1·2 개념과 고등학교 첫 내신을 1:1로 준비합니다. 다항식, 방정식과 부등식, 도형의 방정식, 집합과 명제, 함수까지 학교별 시험에 맞춰 대비합니다.",
+        "tagline": "고등학교 첫 내신을 안정적으로",
+        "intro": "고1 수학은 학습량과 난도가 중학교와 크게 달라집니다. 공통수학1·2의 개념을 정확히 잡고, 학교별 시험 범위와 출제 경향에 맞춰 첫 내신을 준비합니다.",
+        "lesson_heading": "고1 수학,<br>이렇게 수업합니다",
+        "lesson_text": "고교학점제와 5등급 내신 체제에서는 고1 성적이 이후 과목 선택과 진로에 영향을 줍니다. 개념, 유형, 학교 기출 순서로 고1 내신을 체계적으로 준비합니다.",
+        "cards": [
+            ("COMMON MATH 1", "공통수학1", "다항식, 방정식과 부등식, 경우의 수, 행렬을 개념 원리부터 응용 문제까지 학습합니다."),
+            ("COMMON MATH 2", "공통수학2", "도형의 방정식, 집합과 명제, 함수와 그래프를 식과 그림으로 연결해 이해합니다."),
+            ("SCHOOL EXAM", "고1 내신 대비", "학교 교과서와 부교재, 기출 문제를 분석해 서술형과 고난도 문항까지 준비합니다."),
+        ],
+        "stages_heading": "고1 수학<br>학기별 학습 흐름",
+        "stages": [
+            ("1학기", "공통수학1의 다항식, 방정식과 부등식, 경우의 수, 행렬로 고등 내신의 기초를 다집니다."),
+            ("2학기", "공통수학2의 도형의 방정식, 집합과 명제, 함수와 그래프를 내신 유형 중심으로 준비합니다."),
+            ("겨울방학", "고1 전 범위를 복습하고 고2 대수와 미적분Ⅰ을 준비합니다."),
+        ],
+        "faqs": [
+            ("고1 첫 시험이 걱정돼요.", "학교별 시험 범위와 기출 경향을 먼저 확인하고, 시험 4~5주 전부터 개념 정리, 유형 연습, 실전 모의 순서로 준비합니다."),
+            ("중학교 수학이 부족한데 고1 수업을 따라갈 수 있을까요?", "진단으로 필요한 중학 단원을 찾아 고1 진도와 병행해 빠르게 보완합니다. 특히 인수분해와 이차함수를 우선 점검합니다."),
+            ("고1 때 모의고사도 준비해야 하나요?", "고1은 내신 개념을 탄탄히 하는 것이 우선입니다. 모의고사는 학습 점검 용도로 활용하고 취약 단원을 수업에 반영합니다."),
+        ],
+    },
+    "high-2": {
+        "name": "고2", "grade": "high", "eyebrow": "HIGH 2 MATH",
+        "title": "대구 고2 수학과외 | 대수·미적분Ⅰ·확률과 통계 내신 1:1",
+        "description": "대구 고2 수학과외 - 대수, 미적분Ⅰ, 확률과 통계 과목별 내신과 모의고사를 1:1로 준비합니다. 수능 수학 공통 범위를 고려해 고2부터 체계적으로 대비합니다.",
+        "tagline": "과목별 내신과 수능 기초를 함께",
+        "intro": "고2는 과목별 내신과 수능 준비가 본격적으로 겹치는 시기입니다. 대수, 미적분Ⅰ, 확률과 통계를 학교 시험과 수능 유형 양쪽에서 준비합니다.",
+        "lesson_heading": "고2 수학,<br>이렇게 수업합니다",
+        "lesson_text": "2028학년도 수능부터 수학은 대수, 미적분Ⅰ, 확률과 통계를 공통으로 치릅니다. 고2 내신 과목이 곧 수능 범위이므로 개념을 깊이 있게 다지고 기출로 연결합니다.",
+        "cards": [
+            ("ALGEBRA", "대수", "지수와 로그, 삼각함수, 수열을 개념 원리부터 내신 고난도 문항까지 학습합니다."),
+            ("CALCULUS", "미적분Ⅰ", "함수의 극한과 연속, 미분과 적분을 그래프 해석과 함께 이해하고 응용합니다."),
+            ("STATISTICS", "확률과 통계", "경우의 수, 확률, 통계를 문제 상황을 해석하는 연습과 함께 준비합니다."),
+        ],
+        "stages_heading": "고2 수학<br>학기별 학습 흐름",
+        "stages": [
+            ("1학기", "학교 편성에 맞춰 대수 또는 미적분Ⅰ 내신을 준비하고 모의고사로 수능 유형을 익힙니다."),
+            ("2학기", "이어지는 과목의 내신을 준비하면서 수능 기출로 취약 단원을 점검합니다."),
+            ("겨울방학", "예비고3 과정으로 수능 범위 전체 개념을 정리하고 기출 분석을 시작합니다."),
+        ],
+        "faqs": [
+            ("고2 내신과 수능을 어떻게 병행하나요?", "시험 기간에는 내신 비중을 높이고, 시험 후에는 같은 단원의 수능 기출로 전환합니다. 고2 과목이 수능 범위와 겹쳐 효율적으로 병행할 수 있습니다."),
+            ("학교마다 과목 편성이 다른데 괜찮나요?", "학생의 학교 교육과정 편성표를 확인하고 학기별 과목에 맞춰 수업 순서를 조정합니다."),
+            ("수학 등급을 올리려면 무엇부터 해야 할까요?", "최근 시험지를 분석해 개념 부족, 계산 실수, 시간 부족 중 어디서 점수를 잃는지 먼저 확인하고 그에 맞춰 계획합니다."),
+        ],
+    },
+    "high-3": {
+        "name": "고3", "grade": "high", "eyebrow": "HIGH 3 MATH",
+        "title": "대구 고3 수학과외 | 수능수학 기출·실전 1:1 대비",
+        "description": "대구 고3 수학과외 - 예비고3부터 수능수학 기출 분석, 실전 모의고사, 취약 단원 보완까지 1:1로 준비합니다. 목표 등급에 맞춰 문항별 풀이 전략과 시간 배분을 설계합니다.",
+        "tagline": "목표 등급까지 실전으로",
+        "intro": "고3 수학은 아는 것을 시험장에서 정확하게 풀어내는 연습이 핵심입니다. 평가원 기출과 실전 모의고사로 취약 단원과 시간 배분을 1:1로 관리합니다.",
+        "lesson_heading": "고3 수학,<br>이렇게 수업합니다",
+        "lesson_text": "같은 점수라도 잃는 문항은 학생마다 다릅니다. 모의고사 결과를 문항 단위로 분석해 우선순위를 정하고, 남은 기간에 맞춰 학습 계획을 조정합니다.",
+        "cards": [
+            ("CSAT ANALYSIS", "수능 기출 분석", "평가원 기출을 단원·유형별로 분석해 반복되는 출제 원리와 접근 방법을 정리합니다."),
+            ("PRACTICE", "실전 모의고사", "시간을 재고 푸는 실전 연습과 사후 분석으로 문항별 시간 배분과 검토 습관을 만듭니다."),
+            ("WEAK POINT", "취약 단원 보완", "오답 기록을 바탕으로 자주 틀리는 유형을 집중 보완해 목표 등급에 필요한 점수를 확보합니다."),
+        ],
+        "stages_heading": "고3 수학<br>시기별 학습 흐름",
+        "stages": [
+            ("예비고3 겨울방학", "수능 범위 전체 개념을 점검하고 기출 분석으로 단원별 약점을 찾습니다."),
+            ("3월~6월 모의평가", "기출 심화와 내신을 병행하며 6월 모의평가로 현재 위치를 점검합니다."),
+            ("9월 이후 실전", "실전 모의고사와 오답 정리로 시험 운영 능력을 완성합니다."),
+        ],
+        "faqs": [
+            ("예비고3은 언제부터 수능 준비를 하면 좋을까요?", "고2 겨울방학이 수능 범위 전체를 정리할 수 있는 마지막 긴 시간입니다. 이때 개념 점검과 기출 분석을 시작하는 것을 권합니다."),
+            ("고3 내신도 함께 챙길 수 있나요?", "수시 지원 계획에 따라 내신과 수능의 비중을 정하고, 시험 기간에는 학교 시험 대비를 우선해 일정을 조정합니다."),
+            ("모의고사 점수가 정체되어 있어요.", "시험지를 문항 단위로 분석해 개념, 계산, 시간 중 어느 부분에서 점수를 잃는지 찾고 그 부분에 수업 시간을 집중합니다."),
+        ],
+    },
+    "pre-middle-1": {
+        "name": "예비중1", "grade": "elementary", "eyebrow": "PRE-MIDDLE MATH",
+        "title": "대구 예비중1 수학과외 | 초6 겨울방학 중등 수학 준비",
+        "description": "대구 예비중1 수학과외 - 초등 수학 총정리와 중1 수학 미리 보기를 1:1로 진행합니다. 분수·소수 계산부터 정수와 유리수, 문자와 식까지 중학교 수학을 자신 있게 시작하도록 준비합니다.",
+        "tagline": "중학교 수학을 자신 있게 시작하도록",
+        "intro": "초등학교 6학년 겨울방학은 중학교 수학을 준비하기 가장 좋은 시기입니다. 초등 과정의 빈틈을 먼저 채우고, 중1 수학의 핵심 개념을 미리 익힙니다.",
+        "lesson_heading": "예비중1 수학,<br>이렇게 수업합니다",
+        "lesson_text": "중학교 수학은 음수와 문자가 등장하면서 초등 수학과 사고방식이 달라집니다. 무리한 선행보다 초등 개념 복습과 중1 첫 단원 준비의 균형을 맞춥니다.",
+        "cards": [
+            ("REVIEW", "초등 수학 총정리", "분수와 소수의 계산, 비와 비율, 도형의 넓이 등 중등 수학에 필요한 초등 개념을 점검합니다."),
+            ("PREVIEW", "중1 수학 미리 보기", "소인수분해, 정수와 유리수, 문자와 식을 미리 익혀 입학 후 진도에 자신감을 갖게 합니다."),
+            ("HABIT", "중학생 공부 습관", "개념 노트와 오답 정리 방법을 익혀 중학교부터 스스로 공부하는 흐름을 만듭니다."),
+        ],
+        "stages_heading": "예비중1<br>겨울방학 학습 흐름",
+        "stages": [
+            ("12월", "진단으로 초등 과정의 취약 단원을 찾아 분수·소수 계산과 문장제를 복습합니다."),
+            ("1월", "소인수분해와 정수와 유리수로 중1 수학의 첫 단원을 학습합니다."),
+            ("2월", "문자와 식, 일차방정식 기초까지 익히고 중학교 공부 계획을 세웁니다."),
+        ],
+        "faqs": [
+            ("예비중1은 어느 정도까지 선행하면 좋을까요?", "초등 개념이 탄탄하다면 중1 1학기 범위를 미리 보는 것으로 충분합니다. 기초가 부족하다면 초등 복습을 먼저 진행합니다."),
+            ("초등 수학을 잘했는데도 준비가 필요할까요?", "중학교 수학은 서술형과 식 세우기 비중이 커집니다. 풀이 과정을 쓰는 연습을 미리 해두면 첫 시험에서 큰 차이가 납니다."),
+            ("겨울방학에는 수업을 얼마나 하나요?", "방학 기간과 학생의 목표에 맞춰 수업 횟수를 정합니다. 상담에서 진단 결과를 바탕으로 방학 계획을 함께 세웁니다."),
+        ],
+    },
+    "pre-high-1": {
+        "name": "예비고1", "grade": "high", "eyebrow": "PRE-HIGH MATH",
+        "title": "대구 예비고1 수학과외 | 겨울방학 공통수학 1:1 준비",
+        "description": "대구 예비고1 수학과외 - 중3 겨울방학 동안 공통수학1의 다항식, 방정식과 부등식을 1:1로 준비합니다. 중학 수학 빈틈 점검부터 고1 첫 내신 대비까지 학생 수준에 맞춰 설계합니다.",
+        "tagline": "고등학교 첫 시험을 겨울방학에 준비",
+        "intro": "중3 겨울방학은 고등 수학을 준비할 수 있는 가장 중요한 시기입니다. 중학 수학의 빈틈을 점검하고, 공통수학1의 핵심 단원을 고1 내신 수준까지 준비합니다.",
+        "lesson_heading": "예비고1 수학,<br>이렇게 수업합니다",
+        "lesson_text": "고1 내신은 5등급제로 운영되어 첫 시험의 결과가 중요합니다. 진도를 무리하게 늘리기보다 고1 1학기 시험 범위를 확실하게 이해하는 것을 목표로 합니다.",
+        "cards": [
+            ("CHECK", "중학 수학 점검", "인수분해, 이차방정식, 이차함수 등 고등 수학에 직접 쓰이는 중학 개념의 빈틈을 먼저 채웁니다."),
+            ("COMMON MATH 1", "공통수학1 준비", "다항식의 연산, 나머지정리, 복소수와 이차방정식, 여러 가지 방정식과 부등식을 학습합니다."),
+            ("FIRST EXAM", "고1 첫 내신 대비", "고1 1학기 시험 범위를 기준으로 개념, 유형, 서술형까지 미리 준비합니다."),
+        ],
+        "stages_heading": "예비고1<br>겨울방학 학습 흐름",
+        "stages": [
+            ("12월", "진단으로 중학 수학 취약 단원을 찾아 인수분해와 이차함수를 정리합니다."),
+            ("1월", "공통수학1의 다항식, 나머지정리, 인수분해, 복소수와 이차방정식을 학습합니다."),
+            ("2월", "이차방정식과 이차함수, 여러 가지 방정식과 부등식으로 1학기 내신 범위를 마무리합니다."),
+        ],
+        "faqs": [
+            ("예비고1은 공통수학을 어디까지 해야 하나요?", "고1 1학기 시험 범위를 확실히 이해하는 것이 우선입니다. 학생의 이해 속도에 따라 공통수학1 전체 또는 공통수학2 일부까지 진행합니다."),
+            ("중3인데 아직 고등 선행을 시작하지 않았어요.", "겨울방학 동안 집중적으로 준비하면 충분히 따라갈 수 있습니다. 중학 핵심 개념부터 빠르게 점검한 뒤 공통수학으로 넘어갑니다."),
+            ("고등학교 내신 5등급제에서는 무엇이 중요한가요?", "등급 구간이 넓어진 만큼 실수 없는 정확도와 서술형 완성도가 중요합니다. 개념 이해와 풀이 과정 쓰기를 함께 훈련합니다."),
+        ],
+    },
+    "winter-math": {
+        "name": "겨울방학", "grade": None, "eyebrow": "WINTER BREAK MATH",
+        "title": "대구 겨울방학 수학과외 | 초중고 방학 집중 1:1 수업",
+        "description": "대구 겨울방학 수학과외 - 초등·중등·고등 학생의 방학 기간 취약 단원 보완과 다음 학년 준비를 1:1로 진행합니다. 예비중1, 예비고1, 예비고3 맞춤 방학 계획을 세워 드립니다.",
+        "tagline": "다음 학년을 바꾸는 방학 계획",
+        "intro": "겨울방학은 지난 학년의 빈틈을 채우고 다음 학년을 준비할 수 있는 가장 긴 시간입니다. 학생의 진단 결과를 바탕으로 복습과 예습의 비중을 정해 방학 계획을 세웁니다.",
+        "lesson_heading": "겨울방학 수학,<br>이렇게 수업합니다",
+        "lesson_text": "방학 동안 진도만 많이 나가면 새 학기에 다시 막히기 쉽습니다. 지난 학년 복습, 다음 학년 예습, 학습 습관 만들기를 학생에 맞게 조합합니다.",
+        "cards": [
+            ("REVIEW", "지난 학년 복습", "진단 결과에서 드러난 취약 단원을 우선 보완해 다음 학년 개념이 막히지 않도록 합니다."),
+            ("PREVIEW", "다음 학년 예습", "새 학년 1학기 시험 범위를 기준으로 개념과 기본 유형을 미리 학습합니다."),
+            ("ROUTINE", "방학 공부 습관", "수업 사이 과제와 복습 일정을 정해 방학 동안 꾸준히 공부하는 흐름을 만듭니다."),
+        ],
+        "stages_heading": "학년별<br>겨울방학 수학",
+        "stages": [
+            ("초등 겨울방학 수학", "연산과 서술형을 다지고 다음 학년 개념을 미리 보며, 초6은 예비중1 과정을 준비합니다."),
+            ("중등 겨울방학 수학", "지난 학년 내신 취약 단원을 정리하고, 중3은 예비고1 공통수학을 준비합니다."),
+            ("고등 겨울방학 수학", "다음 학년 과목을 예습하고, 예비고3은 수능 범위 개념 점검과 기출 분석을 시작합니다."),
+        ],
+        "faqs": [
+            ("겨울방학 수업은 언제부터 상담하면 좋을까요?", "방학 시작 전에 진단과 계획을 마치면 방학 첫 주부터 바로 수업을 시작할 수 있습니다. 11~12월 상담을 권합니다."),
+            ("방학에만 수업을 받아도 효과가 있을까요?", "방학은 학기 중보다 시간이 많아 취약 단원을 집중적으로 보완하기 좋습니다. 개학 후 이어서 관리할지도 상담에서 함께 정합니다."),
+            ("복습과 예습 중 무엇을 먼저 해야 하나요?", "진단 결과 이전 학년 개념에 빈틈이 있다면 복습을 먼저 합니다. 개념이 안정적이라면 다음 학년 예습 비중을 높입니다."),
+        ],
+    },
+    "home-tutoring": {
+        "name": "방문", "grade": None, "eyebrow": "HOME VISIT TUTORING",
+        "title": "대구 방문 수학과외 | 집에서 받는 1:1 수학 수업",
+        "description": "대구 방문 수학과외 - 학생의 집으로 찾아가는 1:1 수학 수업입니다. 이동 시간 없이 학생의 공부 환경에서 초등·중등·고등 수학을 맞춤 지도합니다. 방문 가능 지역과 시간은 상담으로 안내합니다.",
+        "tagline": "익숙한 공간에서 집중하는 1:1 수업",
+        "intro": "방문 수학과외는 학생이 가장 편한 공간에서 수업을 받을 수 있는 방식입니다. 학원 이동 시간 없이 학생의 교재와 공부 환경을 직접 보며 맞춤 지도합니다.",
+        "lesson_heading": "방문 수학과외,<br>이렇게 진행합니다",
+        "lesson_text": "1:1 수업은 학생이 질문을 망설이지 않고, 막힌 부분을 바로 해결할 수 있다는 장점이 있습니다. 수업 후에는 학습 내용과 과제를 정리해 꾸준히 관리합니다.",
+        "cards": [
+            ("1:1 LESSON", "학생 맞춤 1:1 수업", "학생의 이해 속도에 맞춰 설명의 깊이와 진도를 조절하고, 질문은 그 자리에서 해결합니다."),
+            ("NO COMMUTE", "이동 시간 절약", "학원을 오가는 시간을 줄여 그만큼 복습과 과제에 집중할 수 있습니다."),
+            ("CARE", "공부 환경 점검", "학생의 교재, 노트, 공부 습관을 직접 확인하고 가정에서 실천할 수 있는 학습 방법을 제안합니다."),
+        ],
+        "stages_heading": "방문 수학과외<br>시작 과정",
+        "stages": [
+            ("전화 상담", "학생의 학년, 최근 성적, 거주 지역, 원하는 수업 시간을 확인합니다."),
+            ("실력 진단", "첫 수업에서 개념 이해도와 풀이 습관을 확인해 학습 방향을 정합니다."),
+            ("정기 수업", "정해진 요일과 시간에 방문해 수업하고 과제와 복습을 점검합니다."),
+        ],
+        "faqs": [
+            ("대구 어느 지역까지 방문 수업이 가능한가요?", "대구 전 지역을 대상으로 상담합니다. 정확한 방문 가능 지역과 시간은 전화 상담으로 안내해 드립니다."),
+            ("방문 수업 시 준비할 것이 있나요?", "학생이 집중할 수 있는 책상과 현재 사용하는 교재, 최근 시험지를 준비해 주시면 됩니다."),
+            ("학원과 방문 과외는 어떻게 다른가요?", "방문 1:1 과외는 학생 한 명의 속도와 약점에 맞춰 수업 내용을 정합니다. 질문이 많거나 기초 보완이 필요한 학생에게 특히 효과적입니다."),
+        ],
+    },
+}
+
 EXPECTED_PAGE_COUNT = 150
-EXPECTED_GRADE_PAGE_COUNT = (len(DISTRICTS) + 1) * len(GRADES)
+EXPECTED_GRADE_PAGE_COUNT = (len(DISTRICTS) + 1) * len(GRADES) + len(TOPICS)
 GENERATED_START = "<!-- LOCALITY-LINKS:START -->"
 GENERATED_END = "<!-- LOCALITY-LINKS:END -->"
 SEO_HEAD_START = "<!-- SEO-HEAD:START -->"
@@ -542,12 +796,97 @@ def render_grade_page(district_slug: str | None, grade_slug: str) -> str:
     <section class="local-plan section" id="stages"><div class="local-plan-inner"><div class="reveal"><p class="eyebrow light">GRADE STAGES</p><h2>{escape(short)} {grade_name}<br>학년별 수학과외</h2></div><ol class="local-plan-list reveal">{stages}</ol></div></section>
     {area_section}
     <section class="area-faq section"><div class="area-faq-heading reveal"><p class="eyebrow">FREQUENTLY ASKED</p><h2>{escape(short)} {grade_name} 수학과외<br>자주 묻는 질문</h2><p>수업 시작 전에 궁금한 내용을 확인해 보세요.</p></div><div class="area-faq-list reveal">{faqs}</div></section>
-    <section class="nearby section" id="nearby"><p class="eyebrow">MORE PROGRAM</p><h2>다른 학년 수학과외</h2><div class="nearby-links">{other_grade_links}</div><h2 class="nearby-subtitle">{other_area_title}</h2><div class="nearby-links">{other_area_links}</div></section>
+    <section class="nearby section" id="nearby"><p class="eyebrow">MORE PROGRAM</p><h2>다른 학년 수학과외</h2><div class="nearby-links">{other_grade_links}</div><h2 class="nearby-subtitle">{other_area_title}</h2><div class="nearby-links">{other_area_links}</div><h2 class="nearby-subtitle">대구 학년·시즌별 수학과외</h2><div class="nearby-links">{topic_links(root, grade_slug)}</div></section>
     <section class="area-cta"><div class="area-cta-inner reveal"><div><p class="eyebrow light">START TOGETHER</p><h2>{escape(short)} {grade_name} 수학,<br>지금 상담해 보세요</h2><p>학생의 학년과 최근 성적, 어려워하는 단원을 알려주시면 필요한 수업 방향부터 안내해 드립니다.</p></div><div class="area-cta-actions"><a href="{root}#contact">무료 학습 상담 <span aria-hidden="true">↗</span></a><a href="tel:01029283614"><small>전화 상담</small><strong>010-2928-3614</strong></a></div></div></section>
   </main>
   <footer><a class="brand" href="{root}"><span class="brand-mark" aria-hidden="true">Σ</span><span>대구 수학과외<small>STUDY PRO</small></span></a><p>{escape(footer_area)} {grade_name} 1:1 맞춤 수학과외<br>상담 문의 <a href="tel:01029283614">010-2928-3614</a></p><p>© <span id="year"></span> STUDY PRO.</p></footer><a class="floating-contact" href="{root}#contact" aria-label="상담 신청">상담<span aria-hidden="true">↗</span></a><script src="{root}script.js?v=20261019"></script>
 </body></html>
 '''
+
+
+def topic_links(root: str, grade_slug: str | None = None, exclude: str | None = None) -> str:
+    links = []
+    for slug, topic in TOPICS.items():
+        if slug == exclude or (grade_slug and topic["grade"] not in (grade_slug, None)):
+            continue
+        label = topic["title"].split(" | ")[0]
+        links.append(f'<a href="{root}{slug}/">{escape(label)} <span aria-hidden="true">↗</span></a>')
+    return "".join(links)
+
+
+def render_topic_page(topic_slug: str) -> str:
+    topic = TOPICS[topic_slug]
+    canonical = f"{SITE_URL}/{topic_slug}/"
+    title, description = topic["title"], topic["description"]
+    heading = title.split(" | ")[0]
+    structured = "".join(json_ld(data) for data in (
+        organization_ld(heading, canonical, "대구광역시"),
+        breadcrumb_ld([("대구 수학과외", f"{SITE_URL}/"), (heading, canonical)]),
+        faq_ld(topic["faqs"]),
+    ))
+    cards = "".join(
+        f'<article class="transition-card reveal"><small>{label}</small><h3>{escape(card_heading)}</h3><p>{escape(text)}</p></article>'
+        for label, card_heading, text in topic["cards"]
+    )
+    stages = "".join(
+        f'<li><span>{number:02d}</span><div><strong>{escape(stage)}</strong><p>{escape(text)}</p></div></li>'
+        for number, (stage, text) in enumerate(topic["stages"], 1)
+    )
+    faqs = "".join(
+        f'<details{" open" if number == 0 else ""}><summary>{escape(question)}<span aria-hidden="true">+</span></summary><p>{escape(answer)}</p></details>'
+        for number, (question, answer) in enumerate(topic["faqs"])
+    )
+    grade_slug = topic["grade"]
+    if grade_slug:
+        grade_name = GRADES[grade_slug]["name"]
+        area_title = f"대구 지역별 {grade_name} 수학과외"
+        area_links = "".join(
+            f'<a href="../{slug}/{grade_slug}/">{escape(name)} {grade_name} 수학과외 <span aria-hidden="true">↗</span></a>'
+            for slug, (name, _) in DISTRICTS.items()
+        )
+    else:
+        area_title = "대구 구·군별 수학과외"
+        area_links = "".join(
+            f'<a href="../{slug}/">{escape(name)} 수학과외 <span aria-hidden="true">↗</span></a>'
+            for slug, (name, _) in DISTRICTS.items()
+        )
+    grade_links = "".join(
+        f'<a href="../{slug}/">대구 {grade["name"]} 수학과외 <span aria-hidden="true">↗</span></a>'
+        for slug, grade in GRADES.items()
+    )
+    return f'''<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{escape(description)}">
+  {social_meta(title, description, canonical)}
+  <link rel="canonical" href="{canonical}"><link rel="icon" href="../favicon.svg" type="image/svg+xml"><title>{escape(title)}</title>
+  {FONT_LINKS}<link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../area.css">
+  {structured}
+</head>
+<body>
+  <header class="site-header" id="top"><a class="brand" href="../" aria-label="대구 수학과외 홈"><span class="brand-mark" aria-hidden="true">Σ</span><span>대구 수학과외<small>STUDY PRO</small></span></a><button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="메뉴 열기"><span></span><span></span><span></span></button><nav class="primary-nav" id="primary-nav" aria-label="주요 메뉴"><a href="#lessons">수업 내용</a><a href="#stages">학습 흐름</a><a href="#nearby">수업 지역</a><a class="nav-cta" href="../#contact">상담 신청</a></nav></header>
+  <main>
+    <section class="area-hero" aria-labelledby="area-title"><p class="breadcrumb"><a href="../">대구 수학과외</a> / {escape(heading.removeprefix("대구 "))}</p><div class="area-hero-content"><p class="eyebrow light">DAEGU {topic["eyebrow"]}</p><h1 id="area-title">{escape(heading)},<br><em>{escape(topic["tagline"])}</em></h1><p>{escape(topic["intro"])}</p>{PHONE_BUTTON}</div></section>
+    <section class="area-guide section" id="lessons"><div class="area-guide-header reveal"><div><p class="eyebrow">{topic["eyebrow"]}</p><h2>{topic["lesson_heading"]}</h2></div><p>{escape(topic["lesson_text"])}</p></div><div class="transition-grid">{cards}</div></section>
+    <section class="local-plan section" id="stages"><div class="local-plan-inner"><div class="reveal"><p class="eyebrow light">STUDY FLOW</p><h2>{topic["stages_heading"]}</h2></div><ol class="local-plan-list reveal">{stages}</ol></div></section>
+    <section class="area-faq section"><div class="area-faq-heading reveal"><p class="eyebrow">FREQUENTLY ASKED</p><h2>{escape(heading.removeprefix("대구 "))}<br>자주 묻는 질문</h2><p>수업 시작 전에 궁금한 내용을 확인해 보세요.</p></div><div class="area-faq-list reveal">{faqs}</div></section>
+    <section class="nearby section" id="nearby"><p class="eyebrow">MORE PROGRAM</p><h2>{area_title}</h2><div class="nearby-links">{area_links}</div><h2 class="nearby-subtitle">학년·시즌별 수학과외</h2><div class="nearby-links">{topic_links("../", exclude=topic_slug)}{grade_links}</div></section>
+    <section class="area-cta"><div class="area-cta-inner reveal"><div><p class="eyebrow light">START TOGETHER</p><h2>{escape(heading.removeprefix("대구 "))},<br>지금 상담해 보세요</h2><p>학생의 학년과 최근 성적, 어려워하는 단원을 알려주시면 필요한 수업 방향부터 안내해 드립니다.</p></div><div class="area-cta-actions"><a href="../#contact">무료 학습 상담 <span aria-hidden="true">↗</span></a><a href="tel:01029283614"><small>전화 상담</small><strong>010-2928-3614</strong></a></div></div></section>
+  </main>
+  <footer><a class="brand" href="../"><span class="brand-mark" aria-hidden="true">Σ</span><span>대구 수학과외<small>STUDY PRO</small></span></a><p>{escape(heading)} 1:1 맞춤 수업<br>상담 문의 <a href="tel:01029283614">010-2928-3614</a></p><p>© <span id="year"></span> STUDY PRO.</p></footer><a class="floating-contact" href="../#contact" aria-label="상담 신청">상담<span aria-hidden="true">↗</span></a><script src="../script.js?v=20261019"></script>
+</body></html>
+'''
+
+
+def generate_topic_pages() -> list[str]:
+    urls = []
+    for topic_slug in TOPICS:
+        page_path = ROOT / topic_slug / "index.html"
+        page_path.parent.mkdir(exist_ok=True)
+        page_path.write_text(render_topic_page(topic_slug), encoding="utf-8", newline="\n")
+        urls.append(f"{SITE_URL}/{topic_slug}/")
+    return urls
 
 
 def generate_grade_pages() -> list[str]:
@@ -649,11 +988,11 @@ def validate(urls: list[str], grade_urls: list[str]) -> None:
 
 def main() -> None:
     urls = generate_pages()
-    grade_urls = generate_grade_pages()
+    grade_urls = generate_grade_pages() + generate_topic_pages()
     update_sitemap(urls, grade_urls)
     validate(urls, grade_urls)
     print(
-        f"Generated and validated {len(urls)} locality pages and {len(grade_urls)} grade pages "
+        f"Generated and validated {len(urls)} locality pages and {len(grade_urls)} grade/topic pages "
         f"across {len(DISTRICTS)} districts"
     )
 
