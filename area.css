@@ -76,3 +76,12 @@
 .nearby-subtitle { margin-top: 70px; font-size: clamp(26px, 3vw, 38px); }
 @media (max-width: 900px) { .area-guide-header, .local-plan-inner, .area-care-heading, .area-faq { grid-template-columns: 1fr; } .transition-grid, .transition-grid.grid-2 { grid-template-columns: 1fr; } .area-care-grid { grid-template-columns: repeat(2, 1fr); } .nearby-links, .locality-links { grid-template-columns: repeat(2, 1fr); } .area-cta-inner { align-items: flex-start; flex-direction: column; justify-content: center; } .area-cta-actions { width: 100%; } }
 @media (max-width: 600px) { .area-hero { min-height: 620px; } .area-hero-content { margin-top: 62px; text-align: left; } .area-hero h1 { font-size: 36px; } .area-hero-content > p:last-of-type { font-size: 14px; } .area-phone { width: 100%; justify-content: center; } .breadcrumb { top: 90px; left: 22px; } .transition-grid { margin-top: 40px; } .transition-card { min-height: 0; } .area-care-summary { grid-template-columns: 1fr; margin-top: 38px; } .area-care-summary div { min-height: 88px; border-right: 0; border-bottom: 1px solid rgba(23, 59, 53, .18); } .area-care-summary div:last-child { border-bottom: 0; } .area-care-grid { grid-template-columns: 1fr; } .area-care-grid article { min-height: 210px; } .area-care-grid h3 { margin-top: 40px; } .localities::before { display: none; } .nearby-links, .locality-links { grid-template-columns: 1fr 1fr; } .nearby-links a, .locality-links a { min-height: 62px; padding: 0 13px; font-size: 13px; } .area-faq { gap: 40px; } .area-faq-list summary { font-size: 14px; } .area-cta { padding: 0 22px; } .area-cta-inner { min-height: 500px; gap: 42px; } }.topic-links-title { margin: 70px 0 0; font-size: clamp(22px, 2.4vw, 30px); word-break: keep-all; }
+.school-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 50px; }
+.school-group { border-top: 3px solid var(--forest); padding: 24px; background: var(--white); }
+.school-group h3 { margin: 0 0 16px; font-size: 19px; }
+.school-group h3 small { margin-left: 6px; color: var(--brick); font-size: 12px; font-weight: 700; }
+.school-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.school-list li { border: 1px solid var(--line); padding: 6px 11px; color: var(--muted); font-size: 13px; }
+.school-section .school-groups:has(> .school-group:only-child) { grid-template-columns: 1fr; }
+.school-note { margin: 18px 0 0; color: var(--muted); font-size: 11px; }
+@media (max-width: 900px) { .school-groups { grid-template-columns: 1fr; } }

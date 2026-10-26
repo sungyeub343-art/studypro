@@ -411,6 +411,33 @@ TOPICS = {
     },
 }
 
+# 출처: 공공데이터포털 전국초중등학교위치표준데이터 (운영 중인 대구 초·중·고, 2026-10-01 기준)
+SCHOOLS = json.loads((Path(__file__).with_name("daegu_schools.json")).read_text(encoding="utf-8"))
+SCHOOL_DATA_NOTE = "학교 목록 출처: 전국초중등학교위치표준데이터(2026년 10월 기준)"
+SCHOOL_LEVEL_NAMES = {"elementary": "초등학교", "middle": "중학교", "high": "고등학교"}
+
+
+def school_group(district_name: str, level: str) -> str:
+    names = SCHOOLS[district_name][level]
+    items = "".join(f"<li>{escape(name)}</li>" for name in names)
+    return (
+        f'<div class="school-group reveal"><h3>{escape(district_name)} {SCHOOL_LEVEL_NAMES[level]} '
+        f'<small>{len(names)}곳</small></h3><ul class="school-list">{items}</ul></div>'
+    )
+
+
+def school_section(district_name: str, levels: list[str]) -> str:
+    level_names = "·".join(SCHOOL_LEVEL_NAMES[level] for level in levels)
+    groups = "".join(school_group(district_name, level) for level in levels if SCHOOLS[district_name][level])
+    return (
+        f'<section class="area-guide section school-section" id="schools"><div class="area-guide-header reveal"><div>'
+        f'<p class="eyebrow">LOCAL SCHOOLS</p><h2>{escape(district_name)} {level_names}<br>학생 수학과외</h2></div>'
+        f'<p>{escape(district_name)}에 있는 {level_names} 학생의 학교 진도와 시험 범위, 교과서와 부교재에 맞춰 1:1 수학 수업을 준비합니다. '
+        f'다니는 학교를 알려주시면 학교별 내신 일정에 맞춘 학습 계획을 안내해 드립니다.</p></div>'
+        f'<div class="school-groups">{groups}</div><p class="school-note">{SCHOOL_DATA_NOTE}</p></section>'
+    )
+
+
 EXPECTED_PAGE_COUNT = 150
 EXPECTED_GRADE_PAGE_COUNT = (len(DISTRICTS) + 1) * len(GRADES) + len(TOPICS)
 GENERATED_START = "<!-- LOCALITY-LINKS:START -->"
@@ -533,6 +560,7 @@ def parent_links_block(district_name: str, localities: list[str]) -> str:
     return (
         f'{GENERATED_START}\n'
         f'    {grades}\n'
+        f'    {school_section(district_name, list(SCHOOL_LEVEL_NAMES))}\n'
         f'    <section class="area-care section" id="care"><div class="area-care-heading reveal">'
         f'<div><p class="eyebrow">PERSONAL CARE SYSTEM</p><h2>{escape(district_name)} 학생을 위한<br>빈틈없는 1:1 관리</h2></div>'
         f'<p>수업 시간에 이해하는 것에서 끝나지 않습니다. 진단부터 주간 복습까지 이어지는 관리로 혼자서도 풀 수 있는 힘을 만듭니다.</p></div>'
@@ -794,6 +822,7 @@ def render_grade_page(district_slug: str | None, grade_slug: str) -> str:
     <section class="area-hero" aria-labelledby="area-title"><p class="breadcrumb">{breadcrumb}</p><div class="area-hero-content"><p class="eyebrow light">{escape(short)} {grade["eyebrow"]}</p><h1 id="area-title">{escape(place)} {grade_name} 수학과외,<br><em>{grade["tagline"]}</em></h1><p>{escape(grade["intro"].format(short=short))}</p>{PHONE_BUTTON}</div></section>
     <section class="area-guide section" id="lessons"><div class="area-guide-header reveal"><div><p class="eyebrow">{grade["eyebrow"]}</p><h2>{escape(short)} {grade["lesson_heading"]}</h2></div><p>{escape(grade["lesson_text"])}</p></div><div class="{grid_class}">{cards}</div></section>
     <section class="local-plan section" id="stages"><div class="local-plan-inner"><div class="reveal"><p class="eyebrow light">GRADE STAGES</p><h2>{escape(short)} {grade_name}<br>학년별 수학과외</h2></div><ol class="local-plan-list reveal">{stages}</ol></div></section>
+    {school_section(district_name, [grade_slug]) if district_slug else ""}
     {area_section}
     <section class="area-faq section"><div class="area-faq-heading reveal"><p class="eyebrow">FREQUENTLY ASKED</p><h2>{escape(short)} {grade_name} 수학과외<br>자주 묻는 질문</h2><p>수업 시작 전에 궁금한 내용을 확인해 보세요.</p></div><div class="area-faq-list reveal">{faqs}</div></section>
     <section class="nearby section" id="nearby"><p class="eyebrow">MORE PROGRAM</p><h2>다른 학년 수학과외</h2><div class="nearby-links">{other_grade_links}</div><h2 class="nearby-subtitle">{other_area_title}</h2><div class="nearby-links">{other_area_links}</div><h2 class="nearby-subtitle">대구 학년·시즌별 수학과외</h2><div class="nearby-links">{topic_links(root, grade_slug)}</div></section>
@@ -964,6 +993,11 @@ def validate(urls: list[str], grade_urls: list[str]) -> None:
         parent_text = (ROOT / district_slug / "index.html").read_text(encoding="utf-8")
         if parent_text.count("<title>") != 1 or parent_text.count('<link rel="canonical"') != 1:
             raise ValueError(f"Invalid head in {district_name} parent page")
+        for level, names in SCHOOLS[district_name].items():
+            grade_text = (ROOT / district_slug / level / "index.html").read_text(encoding="utf-8")
+            for name in names:
+                if f"<li>{escape(name)}</li>" not in parent_text or f"<li>{escape(name)}</li>" not in grade_text:
+                    raise ValueError(f"School {name} missing from {district_name} pages")
         parent_links = re.findall(r'href="(locality-\d{2}/)"', parent_text)
         if len(parent_links) != len(localities) or len(parent_links) != len(set(parent_links)):
             raise ValueError(f"Invalid parent links for {district_name}")
