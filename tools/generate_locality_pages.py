@@ -1,4 +1,6 @@
 from datetime import datetime
+from email.utils import format_datetime
+import hashlib
 from html import escape
 import json
 from pathlib import Path
@@ -796,6 +798,61 @@ def school_section(district_name: str, levels: list[str]) -> str:
     )
 
 
+SCHOOLS_BY_DONG = json.loads((Path(__file__).with_name("daegu_schools_by_dong.json")).read_text(encoding="utf-8"))
+# 행정동 이름만으로 법정동을 찾을 수 없는 경우의 인근 법정동
+LOCALITY_DONG_ALIASES = {
+    ("중구", "성내1동"): ["동산동", "서문로1가", "수창동", "봉산동"],
+    ("중구", "성내2동"): ["동산동", "서문로1가", "수창동", "봉산동"],
+    ("중구", "성내3동"): ["동산동", "서문로1가", "수창동", "봉산동"],
+    ("동구", "불로봉무동"): ["불로동", "봉무동"],
+    ("동구", "혁신동"): ["신서동"],
+    ("동구", "공산동"): ["지묘동", "백안동", "덕곡동"],
+    ("동구", "안심1동"): ["율하동", "신기동", "각산동", "괴전동", "숙천동"],
+    ("동구", "안심2동"): ["율하동", "신기동", "각산동", "괴전동", "숙천동"],
+    ("동구", "안심3동"): ["율하동", "신기동", "각산동", "괴전동", "숙천동"],
+    ("동구", "안심4동"): ["율하동", "신기동", "각산동", "괴전동", "숙천동"],
+    ("서구", "상중이동"): ["상리동", "중리동", "이현동"],
+    ("북구", "무태조야동"): ["서변동", "동변동"],
+    ("북구", "관문동"): ["팔달동", "매천동"],
+    ("수성구", "고산1동"): ["시지동", "신매동", "매호동", "욱수동", "노변동"],
+    ("수성구", "고산2동"): ["시지동", "신매동", "매호동", "욱수동", "노변동"],
+    ("수성구", "고산3동"): ["시지동", "신매동", "매호동", "욱수동", "노변동"],
+}
+
+
+def dong_base(name: str) -> str:
+    # 범어1동·수성2·3가동 → 범어동·수성동, 수성동1가·칠성동2가 → 수성동·칠성동
+    name = re.sub(r"\d+가$", "", name)
+    return re.sub(r"[\d·]+가?(?=동$)", "", name)
+
+
+def locality_schools(district_name: str, locality: str) -> list[str]:
+    dongs = SCHOOLS_BY_DONG.get(district_name, {})
+    targets = LOCALITY_DONG_ALIASES.get((district_name, locality))
+    if targets is None:
+        targets = [dong for dong in dongs if dong_base(dong) == dong_base(locality)]
+    names = []
+    for dong in targets:
+        names.extend(name for name in dongs.get(dong, []) if name not in names)
+    order = {"초등학교": 0, "중학교": 1, "고등학교": 2}
+    return sorted(names, key=lambda name: next((rank for suffix, rank in order.items() if suffix in name), 3))
+
+
+def locality_school_section(district_name: str, locality: str, names: list[str]) -> str:
+    if not names:
+        return ""
+    items = "".join(f"<li>{escape(name)}</li>" for name in names)
+    return (
+        f'<section class="area-guide section school-section" id="schools"><div class="area-guide-header reveal"><div>'
+        f'<p class="eyebrow">NEARBY SCHOOLS</p><h2>{escape(locality)} 인근 학교<br>학생 수학과외</h2></div>'
+        f'<p>{escape(locality)} 인근 {escape(", ".join(names[:3]))} 등 학교에 다니는 학생의 학교 진도와 시험 범위에 맞춰 1:1 수학 수업을 준비합니다. '
+        f'다니는 학교를 알려주시면 학교별 내신 일정에 맞춘 학습 계획을 안내해 드립니다.</p></div>'
+        f'<div class="school-groups"><div class="school-group reveal"><h3>{escape(locality)} 인근 초·중·고 <small>{len(names)}곳</small></h3>'
+        f'<ul class="school-list">{items}</ul></div></div>'
+        f'<p class="school-note">{SCHOOL_DATA_NOTE} · <a href="../#schools">{escape(district_name)} 전체 학교 보기</a></p></section>'
+    )
+
+
 EXPECTED_PAGE_COUNT = 150
 EXPECTED_GRADE_PAGE_COUNT = (len(DISTRICTS) + 1) * len(GRADES) + len(TOPICS)
 GENERATED_START = "<!-- LOCALITY-LINKS:START -->"
@@ -1034,9 +1091,11 @@ def render_page(district_slug: str, district_name: str, locality: str, index: in
     canonical = f"{SITE_URL}/{district_slug}/locality-{index:02d}/"
     kind = locality_kind(locality)
     title = f"대구 {district_name} {locality} 수학과외 | 초등·중등·고등 수학 1:1 맞춤"
+    schools = locality_schools(district_name, locality)
+    school_phrase = f"{', '.join(schools[:2])} 등 인근 학교 " if schools else ""
     description = (
-        f"대구 {district_name} {locality} 수학과외 - 초등 기초수학, 중등 수학내신, 고등 수능수학까지 "
-        f"{locality} 학생의 실력을 진단하고 학년별 1:1 맞춤 수업으로 준비합니다."
+        f"대구 {district_name} {locality} 수학과외 - {school_phrase}{locality} 학생의 실력을 진단하고 "
+        "초등 기초수학, 중등 수학내신, 고등 수능수학까지 학년별 1:1 맞춤 수업으로 준비합니다."
     )
     place_phrase = {"동": "생활권", "읍": "통학 환경", "면": "지역과 통학 일정"}[kind]
     nearby = locality_links(localities, index)
@@ -1073,6 +1132,7 @@ def render_page(district_slug: str, district_name: str, locality: str, index: in
       <article class="transition-card reveal"><small>PERSONAL CARE</small><h3>{escape(locality)} 학생별 맞춤 관리</h3><p>같은 학년이라도 이해도와 목표는 다릅니다. 진단 결과와 학교 일정을 반영해 개념, 유형, 심화, 오답 복습의 비중을 조정합니다.</p></article>
     </div></section>
     {grades}
+    {locality_school_section(district_name, locality, schools)}
     <section class="local-plan section" id="plan"><div class="local-plan-inner"><div class="reveal"><p class="eyebrow light">LOCAL STUDY PLAN</p><h2>{escape(locality)} 학생을 위한<br>세밀한 학습 설계</h2></div><ol class="local-plan-list reveal"><li><span>01</span><div><strong>현재 실력 진단</strong><p>개념 이해도와 풀이 습관, 반복되는 실수의 원인을 확인합니다.</p></div></li><li><span>02</span><div><strong>학교 진도와 내신 연결</strong><p>시험 범위와 목표 점수에 맞춰 개념부터 서술형까지 준비합니다.</p></div></li><li><span>03</span><div><strong>복습과 오답 관리</strong><p>수업 후에도 혼자 설명하고 풀 수 있도록 주간 복습을 점검합니다.</p></div></li></ol></div></section>
     <section class="nearby section" id="nearby"><p class="eyebrow">{escape(district_name)} MATH AREA</p><h2>{escape(district_name)} 동·읍·면 수학과외</h2><div class="locality-links">{nearby}</div></section>
   </main>
@@ -1331,8 +1391,52 @@ def update_sitemap(urls: list[str], grade_urls: list[str]) -> None:
             ET.SubElement(node, f"{namespace}lastmod").text = last_modified
             ET.SubElement(node, f"{namespace}changefreq").text = "monthly"
             ET.SubElement(node, f"{namespace}priority").text = priority
+    # lastmod는 페이지 내용이 실제로 바뀐 날짜만 반영한다 (매일 날짜만 갱신하면 검색엔진이 신뢰하지 않음)
+    manifest_path = Path(__file__).with_name("page_manifest.json")
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.exists() else {}
+    for node in root:
+        url = node.find(f"{namespace}loc").text
+        digest = hashlib.sha256(page_file(url).read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+        entry = manifest.get(url)
+        if entry is None or entry["hash"] != digest:
+            manifest[url] = entry = {"hash": digest, "lastmod": last_modified}
+        node.find(f"{namespace}lastmod").text = entry["lastmod"]
+    live_urls = {node.find(f"{namespace}loc").text for node in root}
+    manifest = {url: manifest[url] for url in sorted(manifest) if url in live_urls}
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=1) + "\n", encoding="utf-8", newline="\n")
     ET.indent(tree, space="  ")
     tree.write(path, encoding="utf-8", xml_declaration=True)
+    write_rss(root, namespace)
+
+
+def page_file(url: str) -> Path:
+    return ROOT / url.removeprefix(f"{SITE_URL}/") / "index.html"
+
+
+def write_rss(sitemap_root: ET.Element, namespace: str) -> None:
+    entries = []
+    for node in sitemap_root:
+        url = node.find(f"{namespace}loc").text
+        text = page_file(url).read_text(encoding="utf-8")
+        title = re.search(r"<title>(.*?)</title>", text, re.S).group(1)
+        description = re.search(r'<meta name="description" content="(.*?)">', text, re.S).group(1)
+        entries.append((node.find(f"{namespace}lastmod").text, url, title, description))
+    entries.sort(key=lambda entry: (entry[0], entry[1]), reverse=True)
+    items = "".join(
+        f"  <item>\n    <title>{title}</title>\n    <link>{url}</link>\n    <guid>{url}</guid>\n"
+        f"    <description>{description}</description>\n"
+        f"    <pubDate>{format_datetime(datetime.fromisoformat(lastmod).replace(tzinfo=SEOUL_TIMEZONE))}</pubDate>\n  </item>\n"
+        for lastmod, url, title, description in entries
+    )
+    rss = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n<channel>\n'
+        "  <title>대구 수학과외 STUDY PRO</title>\n  <link>https://studypro.kr/</link>\n"
+        "  <description>대구 초등·중등·고등 1:1 맞춤 수학과외 지역·학년·과목별 수업 안내</description>\n"
+        "  <language>ko</language>\n"
+        f"  <lastBuildDate>{format_datetime(datetime.fromisoformat(entries[0][0]).replace(tzinfo=SEOUL_TIMEZONE))}</lastBuildDate>\n"
+        f"{items}</channel>\n</rss>\n"
+    )
+    (ROOT / "rss.xml").write_text(rss, encoding="utf-8", newline="\n")
 
 
 def validate(urls: list[str], grade_urls: list[str]) -> None:
